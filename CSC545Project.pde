@@ -7,7 +7,7 @@ int labelX = buttonWidth/2; int labelY = buttonHeight/2;
 float xVar, yVar = 0;
 int boxX, boxY = 0;
 
-String[] functions = {"crop", "filter", "tirangle stuff", "peace", "redundancy"};
+String[] functions = {"crop", "filter", "triangle stuff", "peace", "redundancy"};
 
 PFont title;
 
