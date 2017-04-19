@@ -14,7 +14,8 @@ int boxX, boxY = 0;
 PImage start_image;
 PImage display = null;
 
-String[] functions = {"crop", "filter", "tirangle stuff", "peace", "redundancy", "Open"};
+String[] functions = {"Open", "crop", "filter", "tirangle stuff", "peace", "redundancy"};
+Button[] buttons;
 
 PFont title;
 
@@ -22,28 +23,39 @@ void setup() {
   size(1280, 720);
   strokeWeight(1);
   fill(255);
-  rect(0, 0, 1280, 100);        //main banner
   strokeWeight(1);
-  
-  // Do not change loop. Only change buttonWidth, buttonHeight, and bannerHeight in Global
-  for (int i = 0; i < bannerHeight; i += buttonHeight) {
-    for (int j = 0; j < bannerWidth; j += buttonWidth) {
-      rect(buttonX, buttonY, buttonWidth, buttonHeight);
-      buttonX += buttonWidth;
-    }
-    buttonY += buttonHeight;
-    buttonX = 0;
-  }
-  buttonX = 0;
-  buttonY = 0;
-  
   title = createFont("Times New Roman", 12);
   textFont(title);
-  fillLabels(functions);                          //function that fills in label titles
+  buttons = new Button[functions.length];
+  int x=0, y=0;
+  buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight);
+  buttons[0].draw();
+  x += buttonWidth;
+  for(int i=1; i<buttons.length; i++){
+    if(x+buttonWidth > width){
+      x = 0;
+      y += buttonHeight;
+    }
+    Button btn = new Button(x, y, buttonWidth, buttonHeight, functions[i]);
+    btn.draw();
+    buttons[i] = btn;
+    x += buttonWidth;
+  }
+  bannerHeight = y+buttonHeight;
+  fill(255);
+  rect(0, 0, width, bannerHeight);        //main banner
+
   selectInput("Select a file to work on.", "selected_file");
 }
 
 void draw() {
+  background(200);
+  fill(255);
+  rect(0, 0, width, bannerHeight);        //main banner
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i] != null)
+      buttons[i].draw();
+  }
   if(display != null)
     image(display, 0, bannerHeight);
 }
@@ -53,13 +65,13 @@ void fillLabels(String[] functions) {
   fill(0);
   for (int i = 0; i < functions.length; i++) {
     if (labelX < bannerWidth) {
-      text(functions[i], labelX, labelY);
+      //text(functions[i], labelX, labelY);
       labelX += buttonWidth;
     }
     else{
       labelY += buttonHeight;
       labelX = buttonWidth/2;
-      text(functions[i], labelX, labelY);
+      //text(functions[i], labelX, labelY);
       labelX += buttonWidth;
     }
   }
@@ -76,45 +88,23 @@ void selected_file(File selection){
 
 void mouseClicked() {
   if (mouseX <= bannerWidth && mouseY <= bannerHeight) {
-    xVar = mouseX;
-    yVar = mouseY;
-    // Find the beginning xVal for the highlighted box
-    for (int i = 0; i < bannerWidth/buttonWidth; i++) {
-      if (xVar >= (buttonWidth * i) && xVar < (buttonWidth * i + buttonWidth)) {
-        boxX = buttonWidth * i;
-        //println(boxX);
+    for(int i=0; i<buttons.length; i++){
+      if(buttons[i].clicked(mouseX, mouseY)){
+        buttons[i].setSelected(true);
+        buttons[i].onSelect(mouseX, mouseY, display);
+      }
+      else{
+        buttons[i].setSelected(false);
       }
     }
-    // Find the beginning yVal for the highlighted box
-    for (int i = 0; i < bannerHeight/buttonHeight; i++) {
-      if (yVar >= (buttonHeight * i) && yVar < (buttonHeight * i + buttonHeight)) {
-        boxY = buttonHeight * i;
-        //println(boxY);
-      }
-    }
-    
-    // Redo the banner to "erase" the other highlights
-    fill(255);                                      //make boxes white
-    for (int i = 0; i < bannerHeight; i += buttonHeight) {
-      for (int j = 0; j < bannerWidth; j += buttonWidth) {
-        rect(buttonX, buttonY, buttonWidth, buttonHeight);
-        buttonX += buttonWidth;
-      }
-      buttonY += buttonHeight;
-      buttonX = 0;
-    }
-    buttonX = 0; buttonY = 0;                       //reset the variables
-    
-    fill(200);                                      //hightlight color
-    rect(boxX, boxY, buttonWidth, buttonHeight);
-    fillLabels(functions);                          //function that fills in label titles
+  }
+  for(int i=0; i<buttons.length; i++){
+    buttons[i].handleMouseClick(mouseX, mouseY, display);
   }
 }
 
 void keyReleased(){
-  // This is temporary, until we get the menu functioning.
-  // Though, I'm not opposed to putting in keyboard shortcuts.
-  // But if we do, they should probably be more complicated than this.
-  // For example CTRL + o to open file or something.
-  if(key == 'o') selectInput("Please select a file to work on.", "selected_file");
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleKeyUp(key, display);
+  }
 }
