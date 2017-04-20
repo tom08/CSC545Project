@@ -15,7 +15,8 @@ PImage start_image;
 PImage display = null;
 
 String[] functions = {"Open", "crop", "filter", "tirangle stuff", "peace", "redundancy"};
-Button[] buttons;
+// IF YOU ADD A BUTTON, add another null value to the list
+Button[] buttons = {null,};
 
 PFont title;
 
@@ -26,21 +27,14 @@ void setup() {
   strokeWeight(1);
   title = createFont("Times New Roman", 12);
   textFont(title);
-  buttons = new Button[functions.length];
   int x=0, y=0;
+  // IF you add another button, add it to the appropriate index in buttons here.
+  // ADD buttonWidth to the button, unless buttons.length % 0 == 0, then set x to 0 and add buttonHeight to bannerHeight.
   buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight);
   buttons[0].draw();
   x += buttonWidth;
-  for(int i=1; i<buttons.length; i++){
-    if(x+buttonWidth > width){
-      x = 0;
-      y += buttonHeight;
-    }
-    Button btn = new Button(x, y, buttonWidth, buttonHeight, functions[i]);
-    btn.draw();
-    buttons[i] = btn;
-    x += buttonWidth;
-  }
+
+  //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
   bannerHeight = y+buttonHeight;
   fill(255);
   rect(0, 0, width, bannerHeight);        //main banner
@@ -84,6 +78,18 @@ void selected_file(File selection){
     start_image = loadImage(selection.getAbsolutePath());
     display = start_image.copy();
   }
+}
+
+void mousePressed(){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMousePressed(mouseX, mouseY, display);
+  } 
+}
+
+void mouseReleased(){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMouseReleased(mouseX, mouseY, display);
+  } 
 }
 
 void mouseClicked() {
