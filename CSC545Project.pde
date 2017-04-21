@@ -14,7 +14,6 @@ int boxX, boxY = 0;
 PImage start_image;
 PImage display = null;
 
-String[] functions = {"Open", "crop", "filter", "tirangle stuff", "peace", "redundancy"};
 // IF YOU ADD A BUTTON, add another null value to the list
 Button[] buttons = {null,};
 
