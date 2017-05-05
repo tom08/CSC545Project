@@ -15,6 +15,7 @@ public class Button{
       textAlign(CENTER);
       fill(0);
       text(display, x+wdth/2, y+hght/2);
+    
     }
     
     public boolean clicked(int mouse_x, int mouse_y){
