@@ -66,6 +66,12 @@ class SimilarColorButton extends Button{
     }
   }
   
+  public void handleMouseWheel(MouseEvent event, PImage img){
+    float e = event.getCount();
+    if(e > 0) manipulate_similar_pixels(img, r, g, b);
+    if(e < 0) manipulate_similar_pixels(img, -r, -g, -b);
+  }
+  
   public void onSelect(int mouse_x, int mouse_y, PImage img){
     // Cycle through r, g and b manipulation, and off.
     if(is_active() && b==step){

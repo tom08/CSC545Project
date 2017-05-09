@@ -64,6 +64,13 @@ public class Button{
       return;
     }
     
+    public void handleMouseWheel(MouseEvent e, PImage img){
+      // handleMouseWheel will be called if the mouse wheel is used
+      // args are mouse event and display img.
+      // Do not override unless needed
+      return;
+    }
+    
     public void reset(){
       // reset will be called if not selected, but mouse click was inside the menu.
       // override IF you need to clean up your class when it is no longer active.

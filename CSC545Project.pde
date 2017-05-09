@@ -115,3 +115,9 @@ void keyReleased(){
     if(buttons[i].isSelected()) buttons[i].handleKeyUp(key, display);
   }
 }
+
+void mouseWheel(MouseEvent event){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMouseWheel(event, display);
+  }
+}
