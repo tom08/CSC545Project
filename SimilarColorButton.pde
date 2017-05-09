@@ -8,7 +8,7 @@ class SimilarColorButton extends Button{
     tolerance = 50;
     directions = "";
     r=0; g=0; b=0;
-    step = 10;
+    step = 5;
   }
   
   public void draw(){

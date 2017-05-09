@@ -15,7 +15,7 @@ PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null, null, null,};
+Button[] buttons = {null, null, null, null,};
 
 PFont title;
 
@@ -31,9 +31,11 @@ void setup() {
   // ADD buttonWidth to the button, unless buttons.length % 0 == 0, then set x to 0 and add buttonHeight to bannerHeight.
   buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight); // Button 1
   x += buttonWidth;
-  buttons[1] = new ResetButton(x, y, buttonWidth, buttonHeight);
+  buttons[1] = new SaveButton(x, y, buttonWidth, buttonHeight); // Button 2
   x += buttonWidth;
-  buttons[2] = new SimilarColorButton(x, y, buttonWidth, buttonHeight); // Button 2
+  buttons[2] = new ResetButton(x, y, buttonWidth, buttonHeight); // Button 3
+  x += buttonWidth;
+  buttons[3] = new SimilarColorButton(x, y, buttonWidth, buttonHeight); // Button 4
   x += buttonWidth;
 
   //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
@@ -81,6 +83,12 @@ void selected_file(File selection){
     display = start_image.copy();
   }
 }
+
+void saveCallback(File selection){
+    if(selection != null){
+      display.save(selection.getAbsolutePath());
+    }
+  }
 
 void mousePressed(){
   for(int i=0; i<buttons.length; i++){
