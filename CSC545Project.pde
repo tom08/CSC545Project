@@ -15,7 +15,7 @@ PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null, null,};
+Button[] buttons = {null, null, null,};
 
 PFont title;
 
@@ -29,10 +29,12 @@ void setup() {
   int x=0, y=0;
   // IF you add another button, add it to the appropriate index in buttons here.
   // ADD buttonWidth to the button, unless buttons.length % 0 == 0, then set x to 0 and add buttonHeight to bannerHeight.
-  buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight);
-  buttons[0].draw();
+  buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight); // Button 1
   x += buttonWidth;
-  buttons[1] = new SimilarColorButton(x, y, buttonWidth, buttonHeight);
+  buttons[1] = new ResetButton(x, y, buttonWidth, buttonHeight);
+  x += buttonWidth;
+  buttons[2] = new SimilarColorButton(x, y, buttonWidth, buttonHeight); // Button 2
+  x += buttonWidth;
 
   //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
   bannerHeight = y+buttonHeight;
