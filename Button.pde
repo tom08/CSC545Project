@@ -11,6 +11,7 @@ public class Button{
     public void draw(){
       if(selected) fill(200);
       else fill(255);
+      stroke(0, 0, 0);
       rect(x, y, wdth, hght);
       textAlign(CENTER);
       fill(0);
@@ -43,6 +44,13 @@ public class Button{
     }
     
     public void handleMousePressed(int mouse_x, int mouse_y, PImage img){
+      // handleMousePressed will be called while the mouse button is pressed
+      // args are mouse x, y coordinates and the current image.
+      // do not override if it is not used by the feature being implemented by the subclass
+      return;
+    }
+    
+    public void handleMouseDragged(int mouse_x, int mouse_y, PImage img){
       // handleMousePressed will be called while the mouse button is pressed
       // args are mouse x, y coordinates and the current image.
       // do not override if it is not used by the feature being implemented by the subclass

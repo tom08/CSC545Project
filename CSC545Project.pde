@@ -21,7 +21,7 @@ Button[] buttons = {null, null};
 PFont title;
 
 void setup() {
-  size(1280,720); 
+  size(600,500); //1280,720
   strokeWeight(1);
   fill(255);
   strokeWeight(1);
@@ -88,6 +88,12 @@ void selected_file(File selection){
 void mousePressed(){
   for(int i=0; i<buttons.length; i++){
     if(buttons[i].isSelected()) buttons[i].handleMousePressed(mouseX, mouseY, display);
+  } 
+}
+
+void mouseDragged(){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMouseDragged(mouseX, mouseY, display);
   } 
 }
 
