@@ -31,12 +31,11 @@ class CropButton extends Button{
   }
     
    public void handleMouseDragged(int mouse_x, int mouse_y, PImage img){
-    // if(mousePressed){
-      if (mouse_x < startX) {
-          endX = startX;
-          startX = mouse_x; 
-      } else { 
-          endX = mouse_x;
+    if (mouse_x < startX) {
+      endX = startX;
+      startX = mouse_x; 
+    } else { 
+        endX = mouse_x;
       }
     
     if (mouse_y < startY){
@@ -52,13 +51,14 @@ class CropButton extends Button{
       noFill();
       stroke(255, 0, 0);
       rect(startX, startY, wdth, ht);
-   
+      
       return;   
-    // }
+    
    }
       
   public void handleMouseReleased(int mouse_x, int mouse_y, PImage img){
-    if (mouse_x < startX) {
+    //this section not needed
+    /*if (mouse_x < startX) {
       endX = startX;
       startX = mouse_x; 
     } else {
@@ -73,12 +73,12 @@ class CropButton extends Button{
     } 
   
    wdth = abs(endX - pstartX); 
-   ht = abs(endY - pstartY); 
+   ht = abs(endY - pstartY); */
    
     
    croppedImg = get(startX+1, startY+1, wdth-1, ht-1);
    
-   if (startY >= buttonHeight){ // restricting image selection below buttons
+   if (startY >= buttonHeight){ // restricting crop function below menu buttons
      display = croppedImg;
    }
    startX = -1; //resetting for new crop
