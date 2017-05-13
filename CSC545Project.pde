@@ -10,17 +10,18 @@ int labelX = buttonWidth/2; int labelY = buttonHeight/2;
 float xVar, yVar = 0;
 int boxX, boxY = 0;
 
+
 // Display/Image Globals
 PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null,};
+Button[] buttons = {null, null, null};
 
 PFont title;
 
 void setup() {
-  size(1280, 720);
+  size(1280,720); 
   strokeWeight(1);
   fill(255);
   strokeWeight(1);
@@ -32,6 +33,15 @@ void setup() {
   buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight);
   buttons[0].draw();
   x += buttonWidth;
+  
+  buttons[1] = new CropButton(x, y, buttonWidth, buttonHeight);
+  buttons[1].draw();
+  x += buttonWidth;
+  
+  buttons[2] = new TextButton(x, y, buttonWidth, buttonHeight);
+  buttons[2].draw();
+  x += buttonWidth;
+
 
   //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
   bannerHeight = y+buttonHeight;
@@ -42,15 +52,23 @@ void setup() {
 }
 
 void draw() {
+  
   background(200);
   fill(255);
-  rect(0, 0, width, bannerHeight);        //main banner
+  stroke(0, 0, 0);
+  textFont(title);
+  rect(0, 0, width, bannerHeight);
+  
+  if(display != null){
+    image(display, 0, bannerHeight);
+  }
+    
+  //main banner
   for(int i=0; i<buttons.length; i++){
     if(buttons[i] != null)
       buttons[i].draw();
   }
-  if(display != null)
-    image(display, 0, bannerHeight);
+  
 }
 
 void fillLabels(String[] functions) {
@@ -82,6 +100,12 @@ void selected_file(File selection){
 void mousePressed(){
   for(int i=0; i<buttons.length; i++){
     if(buttons[i].isSelected()) buttons[i].handleMousePressed(mouseX, mouseY, display);
+  } 
+}
+
+void mouseDragged(){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMouseDragged(mouseX, mouseY, display);
   } 
 }
 
