@@ -21,7 +21,7 @@ Button[] buttons = {null, null, null};
 PFont title;
 
 void setup() {
-  size(700,500); //1280,720
+  size(1280,720); 
   strokeWeight(1);
   fill(255);
   strokeWeight(1);

@@ -1,8 +1,7 @@
 /*
-BUG: point of reference resets when mouse is moved around on screen
+
 
 */
-
 
 class CropButton extends Button{
   public CropButton(int x, int y, int b_w, int b_h){ //constructor x,y coord, width, height
@@ -24,14 +23,15 @@ class CropButton extends Button{
   }
     
    public void handleMouseDragged(int mouse_x, int mouse_y, PImage img){
-    if (mouse_x < startX) {
+    if (mouse_x < pstartX) {
       endX = startX;
       startX = mouse_x; 
     } else { 
         endX = mouse_x;
+      
       }
     
-    if (mouse_y < startY){
+    if (mouse_y < pstartY){
         endY = startY;
         startY = mouse_y;   
     } else { 

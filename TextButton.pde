@@ -1,9 +1,4 @@
-/*
-BUG: if I select another button then come back
-the messageStart does not reset to 0 because the program 
-is continually running
-
-INSTRUCTIONS:
+/*INSTRUCTIONS:
 
 font size:
 1 -increases 
@@ -22,7 +17,7 @@ class TextButton extends Button{
     messageStart = 0; //sets once at beginning
     count = 0;
     number = 0;
-    text = 15;
+    text = 20;
   }
     
  public void handleMousePressed(int mouse_x, int mouse_y, PImage img){
@@ -36,7 +31,6 @@ class TextButton extends Button{
         }
     return;
  }
- 
  
 public void handleKeyUp(char k, PImage img){
   super.handleKeyUp(k, img);
@@ -56,29 +50,19 @@ public void handleKeyUp(char k, PImage img){
           number = count;
         }
       }
-    
-    /*if (number == message.length) { 
-     count = 0; // reset
-     number = 0;
-     }*/ 
       return;
  }
  
  public void draw(){
      super.draw();
-     //print(messageStart, " ");
      
      if (messageStart != 0){
        textSize(text);
        
        if (number < message.length && startY >= buttonHeight){ //prevents from printing text in menu bar
-         if(message[number].length() < 10){ //getting word closer to arrow
-           text(message[number], startX, startY, 60, 100);
+           textAlign(LEFT);
+           text(message[number], startX, startY);
          }
-         else if (message[number].length() > 10){
-           text(message[number], startX, startY, 100, 100);
-        }
-      }
     }
  }
      
