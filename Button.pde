@@ -14,6 +14,7 @@ public class Button{
       stroke(0, 0, 0);
       rect(x, y, wdth, hght);
       textAlign(CENTER);
+      textSize(12);
       fill(0);
       text(display, x+wdth/2, y+hght/2);
     

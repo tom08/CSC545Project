@@ -16,7 +16,7 @@ PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null, null, null};
+Button[] buttons = {null, null, null, null, null, null, null};
 
 PFont title;
 
@@ -40,6 +40,23 @@ void setup() {
   
   buttons[2] = new TextButton(x, y, buttonWidth, buttonHeight);
   buttons[2].draw();
+  x += buttonWidth;
+  
+  buttons[3] = new RotateButton(x, y, buttonWidth, buttonHeight, display);
+  buttons[3].draw();
+  x += buttonWidth;
+  
+  buttons[4] = new VerticalFlipButton(x, y, buttonWidth, buttonHeight, display);
+  buttons[4].draw();
+  x = 0;
+  y += buttonHeight;
+  
+  buttons[5] = new EraserButton(x, y, buttonWidth, buttonHeight, display);
+  buttons[5].draw();
+  x += buttonWidth;
+  
+  buttons[6] = new HorizontalFlipButton(x, y, buttonWidth, buttonHeight, display);
+  buttons[6].draw();
   x += buttonWidth;
 
 
