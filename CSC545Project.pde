@@ -16,12 +16,12 @@ PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null, null};
+Button[] buttons = {null, null, null};
 
 PFont title;
 
 void setup() {
-  size(600,500); //1280,720
+  size(700,500); //1280,720
   strokeWeight(1);
   fill(255);
   strokeWeight(1);
@@ -37,6 +37,10 @@ void setup() {
   buttons[1] = new CropButton(x, y, buttonWidth, buttonHeight);
   buttons[1].draw();
   x += buttonWidth;
+  
+  buttons[2] = new TextButton(x, y, buttonWidth, buttonHeight);
+  buttons[2].draw();
+  x += buttonWidth;
 
 
   //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
@@ -48,15 +52,23 @@ void setup() {
 }
 
 void draw() {
+  
   background(200);
   fill(255);
-  rect(0, 0, width, bannerHeight);        //main banner
+  stroke(0, 0, 0);
+  textFont(title);
+  rect(0, 0, width, bannerHeight);
+  
+  if(display != null){
+    image(display, 0, bannerHeight);
+  }
+    
+  //main banner
   for(int i=0; i<buttons.length; i++){
     if(buttons[i] != null)
       buttons[i].draw();
   }
-  if(display != null)
-    image(display, 0, bannerHeight);
+  
 }
 
 void fillLabels(String[] functions) {
