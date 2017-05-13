@@ -35,9 +35,9 @@ class TextButton extends Button{
 public void handleKeyUp(char k, PImage img){
   super.handleKeyUp(k, img);
    
-  if (key == '1'){ // change text font
+  if (key == '1' && text < 50){ // change text font
       text += 1;
-    } else if (key == '0') {
+    } else if (key == '0' && text > 5) {
       text -= 1;
     }
     
@@ -59,7 +59,7 @@ public void handleKeyUp(char k, PImage img){
      if (messageStart != 0){
        textSize(text);
        
-       if (number < message.length && startY >= buttonHeight){ //prevents from printing text in menu bar
+       if (number < message.length && startY >= bannerHeight + textAscent()){ //prevents from printing text in menu bar
            textAlign(LEFT);
            text(message[number], startX, startY);
          }

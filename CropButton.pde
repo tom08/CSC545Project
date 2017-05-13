@@ -61,7 +61,7 @@ class CropButton extends Button{
    
    croppedImg = get(startX+1, startY+1, wdth-1, ht-1);
    
-   if (startY >= buttonHeight){ // restricting crop function below menu buttons
+   if (startY >= bannerHeight){ // restricting crop function below menu buttons
      display = croppedImg;
    }
    startX = -1; // resetting for new crop
