@@ -16,7 +16,9 @@ PImage start_image;
 PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
-Button[] buttons = {null, null, null, null, null, null, null};
+
+Button[] buttons = {null, null, null, null, null, null, null, null, null, null,};
+
 
 PFont title;
 
@@ -30,33 +32,34 @@ void setup() {
   int x=0, y=0;
   // IF you add another button, add it to the appropriate index in buttons here.
   // ADD buttonWidth to the button, unless buttons.length % 0 == 0, then set x to 0 and add buttonHeight to bannerHeight.
-  buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight);
-  buttons[0].draw();
+  buttons[0] = new OpenButton(x, y, buttonWidth, buttonHeight); // Button 1
+  x += buttonWidth;
+  buttons[1] = new SaveButton(x, y, buttonWidth, buttonHeight); // Button 2
+  x += buttonWidth;
+  buttons[2] = new ResetButton(x, y, buttonWidth, buttonHeight); // Button 3
+  x += buttonWidth;
+
+  
+  buttons[3] = new CropButton(x, y, buttonWidth, buttonHeight);
   x += buttonWidth;
   
-  buttons[1] = new CropButton(x, y, buttonWidth, buttonHeight);
-  buttons[1].draw();
-  x += buttonWidth;
-  
-  buttons[2] = new TextButton(x, y, buttonWidth, buttonHeight);
-  buttons[2].draw();
-  x += buttonWidth;
-  
-  buttons[3] = new RotateButton(x, y, buttonWidth, buttonHeight, display);
-  buttons[3].draw();
-  x += buttonWidth;
-  
-  buttons[4] = new VerticalFlipButton(x, y, buttonWidth, buttonHeight, display);
-  buttons[4].draw();
+  buttons[4] = new TextButton(x, y, buttonWidth, buttonHeight);
   x = 0;
   y += buttonHeight;
   
-  buttons[5] = new EraserButton(x, y, buttonWidth, buttonHeight, display);
-  buttons[5].draw();
+  buttons[5] = new RotateButton(x, y, buttonWidth, buttonHeight, display);
   x += buttonWidth;
   
-  buttons[6] = new HorizontalFlipButton(x, y, buttonWidth, buttonHeight, display);
-  buttons[6].draw();
+  buttons[6] = new VerticalFlipButton(x, y, buttonWidth, buttonHeight, display);
+  x += buttonWidth;
+  
+  buttons[7] = new EraserButton(x, y, buttonWidth, buttonHeight, display);
+  x += buttonWidth;
+  
+  buttons[8] = new HorizontalFlipButton(x, y, buttonWidth, buttonHeight, display);
+  x += buttonWidth;
+  
+  buttons[9] = new SimilarColorButton(x, y, buttonWidth, buttonHeight); // Button 4
   x += buttonWidth;
 
 
@@ -114,6 +117,12 @@ void selected_file(File selection){
   }
 }
 
+void saveCallback(File selection){
+    if(selection != null){
+      display.save(selection.getAbsolutePath());
+    }
+  }
+
 void mousePressed(){
   for(int i=0; i<buttons.length; i++){
     if(buttons[i].isSelected()) buttons[i].handleMousePressed(mouseX, mouseY, display);
@@ -141,6 +150,7 @@ void mouseClicked() {
       }
       else{
         buttons[i].setSelected(false);
+        buttons[i].reset();
       }
     }
   }
@@ -152,5 +162,11 @@ void mouseClicked() {
 void keyReleased(){
   for(int i=0; i<buttons.length; i++){
     if(buttons[i].isSelected()) buttons[i].handleKeyUp(key, display);
+  }
+}
+
+void mouseWheel(MouseEvent event){
+  for(int i=0; i<buttons.length; i++){
+    if(buttons[i].isSelected()) buttons[i].handleMouseWheel(event, display);
   }
 }
