@@ -12,7 +12,7 @@ public class Button{
       if(selected) fill(200);
       else fill(255);
       stroke(0, 0, 0);
-      rect(x, y, wdth, hght);
+      rect(x, y, wdth, hght, 10);
       textAlign(CENTER);
       textSize(12);
       fill(0);

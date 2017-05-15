@@ -17,7 +17,7 @@ PImage display = null;
 
 // IF YOU ADD A BUTTON, add another null value to the list
 
-Button[] buttons = {null, null, null, null, null, null, null, null, null, null,};
+Button[] buttons = {null, null, null, null, null, null, null, null, null, null,null,null,null, null};
 
 
 PFont title;
@@ -60,8 +60,21 @@ void setup() {
   x += buttonWidth;
   
   buttons[9] = new SimilarColorButton(x, y, buttonWidth, buttonHeight); // Button 4
+  //x += buttonWidth;
+  x=0;
+  y+=buttonHeight;
+  buttons[10] = new NegativeFilter(x, y, buttonWidth, buttonHeight);
+  //buttons[10].draw();//dont delete  this one, because reasons
   x += buttonWidth;
-
+  buttons[12] = new GrayScaleFilter(x, y, buttonWidth, buttonHeight);
+  //buttons[11].draw();//dont delete  this one, because reasons
+  x += buttonWidth;
+  buttons[11] = new SepiaFilter(x, y, buttonWidth, buttonHeight);
+ // buttons[11].draw();//dont delete  this one, because reasons
+  x += buttonWidth;
+  buttons[13] = new SimpleGrayFilter(x, y, buttonWidth, buttonHeight);
+  //buttons[11].draw();//dont delete  this one, because reasons
+  x += buttonWidth;
 
   //NOTE: this is poor practice, but time is short. For every 5 buttons add the button height to the banner height
   bannerHeight = y+buttonHeight;
