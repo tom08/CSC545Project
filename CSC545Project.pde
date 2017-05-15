@@ -1,5 +1,8 @@
-/*
-
+/*  GROUP 1
+  Zachary Gilmer
+  Jordan Hadden
+  Jamie Johnson
+  Thomas Kroll
 */
 
 // Globals
