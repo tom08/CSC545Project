@@ -66,14 +66,15 @@ void setup() {
   //x += buttonWidth;
   x=0;
   y+=buttonHeight;
+  x+=buttonWidth/2;
   buttons[10] = new NegativeFilter(x, y, buttonWidth, buttonHeight);
   //buttons[10].draw();//dont delete  this one, because reasons
   x += buttonWidth;
-  buttons[12] = new GrayScaleFilter(x, y, buttonWidth, buttonHeight);
-  //buttons[11].draw();//dont delete  this one, because reasons
-  x += buttonWidth;
   buttons[11] = new SepiaFilter(x, y, buttonWidth, buttonHeight);
  // buttons[11].draw();//dont delete  this one, because reasons
+  x += buttonWidth;
+  buttons[12] = new GrayScaleFilter(x, y, buttonWidth, buttonHeight);
+  //buttons[11].draw();//dont delete  this one, because reasons
   x += buttonWidth;
   buttons[13] = new SimpleGrayFilter(x, y, buttonWidth, buttonHeight);
   //buttons[11].draw();//dont delete  this one, because reasons
