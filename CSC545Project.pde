@@ -130,6 +130,8 @@ void selected_file(File selection){
   // Callback for the file select.
   if(selection != null){
     start_image = loadImage(selection.getAbsolutePath());
+    if(start_image.width > width) start_image.resize(width, 0);
+    if(start_image.height > height-bannerHeight) start_image.resize(0, height-bannerHeight);
     display = start_image.copy();
   }
 }
